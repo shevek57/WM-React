@@ -30,7 +30,7 @@ class App extends Component {
           memoryItems={['5', '8', '2', '3']}
           onDone={this.handleDone}
         />,
-       <RecallTask possibleItems = {['1','2','3','4','5','6','7','8','9']}
+       <RecallTask possibleItems = {['1','2','3','4','5','6','7','8','10']}
               onDone={this.handleDone}
     />][this.state.activeFrame % 2]}
       </div>
