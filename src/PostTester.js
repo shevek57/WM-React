@@ -17,7 +17,7 @@ class PostTester extends Component {
       handleSubmit(event) {
         fetch('https://ets-cls.org/ikatz/wm/wm_test.php', {
             method: 'POST',
-            body: JSON.stringify({
+            body: JSON.stringify({ // this doesn't work.  wm_test $_REQUEST doesn't get these values, although the php file receives the post request.
                     request: 'saveLog',
                     log: 'TestLOG',
                     sid: 'testSID',
@@ -27,7 +27,7 @@ class PostTester extends Component {
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
             }
-        }).then(response => {
+        }).then(response => { // nothing comes back from here.
             this.setState({response: 'looking at rsponse'});
             return response.json()
         }).then(response => this.setState({response: response}));

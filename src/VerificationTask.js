@@ -3,6 +3,7 @@ import Constants from './Constants.js';
 
 class VerificationTask extends Component {
     // props: question, onResponse(answer)
+
     constructor(props) {
         super(props);
 
@@ -10,7 +11,11 @@ class VerificationTask extends Component {
     }
 
     componentDidMount() {
-        setTimeout((() => this.props.onResponse(Constants.TIMEOUT_VALUE)), Constants.VERIFICATION_MILLIS);
+        this.timer = setTimeout((() => this.props.onResponse(Constants.TIMEOUT_VALUE)), Constants.VERIFICATION_MILLIS);
+    }
+
+    componentWillUnmount() {
+        clearTimeout(this.timer)
     }
 
     handleClick = (event) => {

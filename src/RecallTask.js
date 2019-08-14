@@ -4,7 +4,7 @@ import Utils from './Utils.js';
 
 class RecallTask extends Component {
 
-    // props: possibleItems, onDone(recalledItems)
+    // props: possibleItems, numberToRecall, onDone(recalledItems)
 
     constructor(props) {
         super(props);
@@ -24,8 +24,8 @@ class RecallTask extends Component {
     handleRecall(e) {
         const item = e.target.value; //setState is asynchronous. because the event (e) is a temporary object, it might not be
                                     //around by the time that the function in setState gets called.  Thus, need to pull the value now.
-        if (this.state.recalledItems.length === this.props.possibleItems.length) {
-            alert('Too many items recalled');
+        if (this.state.recalledItems.length === this.props.numberToRecall) {
+            alert('Must recall exactly ' + this.props.numberToRecall + ' items.');
         } else {
             this.setState(currState => ({
                 recalledItems: [...currState.recalledItems, item]
@@ -41,7 +41,11 @@ class RecallTask extends Component {
     }
 
     handleSubmit() {
-        this.props.onDone(this.state.recalledItems);
+        if (this.state.recalledItems.length !== this.props.numberToRecall) {
+            alert('Must recall exactly ' + this.props.numberToRecall + ' items.');    
+        } else {
+            this.props.onDone(this.state.recalledItems)
+        }
     }
 
 
@@ -49,10 +53,10 @@ class RecallTask extends Component {
         const itemChunks = Utils.chunkArray(this.props.possibleItems, Constants.RECALLBUTTON_ROW_LENGTH);
 
         return (<div>
-            {itemChunks.map(chunk =>
-                <div>
-                    {chunk.map(item =>
-                        <button value={item} onClick={this.handleRecall}>{item}</button>
+            {itemChunks.map((chunk, index) => // keys added to avoid warning from React
+                <div key={index}>
+                    {chunk.map((item, index) => // keys added to avoid warning from React
+                        <button key={index} value={item} onClick={this.handleRecall}>{item}</button>
                     )}
                 </div>
             )}
