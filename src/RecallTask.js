@@ -57,7 +57,7 @@ class RecallTask extends Component {
                 </div>
             )}
             <div>
-                <button value="_" onClick={this.handleRecall}>BLANK</button>
+                <button value="_"  onClick={this.handleRecall}>BLANK</button>
                 <button onClick={this.handleDelete}>DELETE</button>
             </div>
         </div>

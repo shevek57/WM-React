@@ -9,6 +9,10 @@ class VerificationTask extends Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
+    componentDidMount() {
+        setTimeout((() => this.props.onResponse(Constants.TIMEOUT_VALUE)), Constants.VERIFICATION_MILLIS);
+    }
+
     handleClick = (event) => {
         // call onResponse with the parameter that's the value of the thing clicked
         this.props.onResponse(event.target.value);
