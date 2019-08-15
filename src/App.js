@@ -28,7 +28,8 @@ class App extends Component {
     return (
       <div className="App">
         {(() => {
-          const children = [<Stimuli
+          const children = [
+          <Stimuli
             verifications={['1 + 1 = 2', '2 + 2 = 5', '3 + 2 = 7', '5 + 2 = 5']}
             memoryItems={['H', 'K', 'T', 'Q']}
             onDone={this.handleDone}
