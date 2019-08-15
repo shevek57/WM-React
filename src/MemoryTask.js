@@ -5,12 +5,16 @@ class MemoryTask extends Component {
     // props: memoryItem and onTimeout
 
     componentDidMount() {
-        setTimeout(this.props.onTimeout, Constants.MEMORYTASK_MILLIS);
+        this.timer = setTimeout(this.props.onTimeout, Constants.MEMORYTASK_MILLIS);
+    }
+
+    componentWillUnmount() {
+        clearTimeout(this.timer)
     }
 
     render() {
         return (
-            <div><span>{this.props.memoryItem}</span></div>
+            <span>{this.props.memoryItem}</span>
         )
     }
 }

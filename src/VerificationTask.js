@@ -3,10 +3,19 @@ import Constants from './Constants.js';
 
 class VerificationTask extends Component {
     // props: question, onResponse(answer)
+
     constructor(props) {
         super(props);
 
         this.handleClick = this.handleClick.bind(this);
+    }
+
+    componentDidMount() {
+        this.timer = setTimeout((() => this.props.onResponse(Constants.TIMEOUT_VALUE)), Constants.VERIFICATION_MILLIS);
+    }
+
+    componentWillUnmount() {
+        clearTimeout(this.timer)
     }
 
     handleClick = (event) => {

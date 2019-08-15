@@ -24,7 +24,7 @@ class Stimuli extends Component {
     handleVerificationResponse(answer) {
         this.setState((currState) => {
             return {
-                memoryItems: currState.memoryItems.slice(1),
+                verifications: currState.verifications.slice(1),
                 verificationAnswers: [...currState.verificationAnswers, answer],
                 activeFrame: currState.activeFrame + 1
             }
@@ -36,13 +36,14 @@ class Stimuli extends Component {
    // TODO: Rethink the above so this all smoothly works if there are no Verifications or MemoryTasks (i.e., in practice trials)
     handleMemoryTaskTimeout() {
         this.setState((currState, props) => {
-            if (currState.verifications.length === 1) {
+            if (currState.verifications.length === 0) {
                 props.onDone(currState.verificationAnswers); // send the answers we accumulated to the parent via callback
                 return { 
+                    activeFrame: currState.activeFrame + 1
                 }
             } else { // Otherwise, we just showed a Memory item for a few seconds so now we need to hide it and show the next verification
                 return {
-                    verifications: currState.verifications.slice(1),
+                    memoryItems: currState.memoryItems.slice(1),
                     activeFrame: currState.activeFrame + 1
                 }
             }
