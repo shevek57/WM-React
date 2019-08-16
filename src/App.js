@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import Stimuli from './Stimuli.js';
-import RecallTask from './RecallTask.js';
 import Constants from './Constants.js';
-//import PostTester from './PostTester.js';
-//import Introduction from './Introduction.js'
+import {Introduction, ExperimentInstructions, CompletionInstructions} from './instructions.js';
+import Experiment from './Experiment.js';
 
 
 class App extends Component {
@@ -29,18 +27,26 @@ class App extends Component {
       <div className="App">
         {(() => {
           const children = [
-          <Stimuli
-            verifications={['1 + 1 = 2', '2 + 2 = 5', '3 + 2 = 7', '5 + 2 = 5']}
-            memoryItems={['H', 'K', 'T', 'Q']}
-            onDone={this.handleDone}
-          />,
-          <RecallTask possibleItems={Constants.POSSIBLEITEMS}
-          numberToRecall={4}
-            onDone={this.handleDone}
-          />];
+            <Introduction onDone={this.advanceFrame} />,
+            <ExperimentInstructions
+              onDone={(userID) => {
+                this.recordID(userID);
+                this.advanceFrame()
+              }}
+            />,
+            <Experiment
+              allVerifications={this.verificationsForExperiment}
+              allAnswers={this.answersForExperiment}
+              trialLengths={this.trialLengthsForExperiment}
+              onDone={(scoreResults) => {
+                this.recordResults(scoreResults);
+                this.advanceFrame()
+              }}
+              />,
+              <CompletionInstructions onDone={this.allDone} />
+        ];
           return children[this.state.activeFrame % children.length]})()}
       </div>
-      // <Introduction onDone={this.handleDone} />
     );
   }
 }

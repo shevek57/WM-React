@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Stimuli from './Stimuli.js';
 import RecallTask from './RecallTask.js';
+import Feedback from './Feedback.js';
 import Constants from './Constants.js';
 
 
@@ -63,7 +64,7 @@ class Trial extends Component {
                             numberToRecall={this.props.memoryItems.length}
                             onDone={this.scoreRecall}
                         />,
-                        <Feedback 
+                        <Feedback
                             verificationScore={this.state.verificationScore}
                             numberOfVerifications={this.props.verifications.length}
                             recallScore={this.recallScore}

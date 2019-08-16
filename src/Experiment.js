@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Trial from './Trial.js';
 import Constants from './Constants.js';
 import Utils from './Utils.js';
 
@@ -21,8 +22,10 @@ class Experiment extends Component {
     }
 
     recordResultsAndAdvance(verifyScore, recallScore) {
-        const scoreResult = { //TODO: Don't like how scoreResult's structure tethers Experiment to anyone using scoreResult.  Could make a ScoreResult object that's held in a separate file. At least then there would be a central place for its definition and VSC would be able to do automated refactoring if it changes (right?). 
-            verifyScore: verificationScore,
+        const scoreResult = { //TODO: Don't like how scoreResult's structure tethers Experiment to anyone using scoreResult.  
+                              // Could make a ScoreResult object that's held in a separate file. At least then there would be a central place for its definition 
+                              // and VSC would be able to do automated refactoring if it changes (right?). 
+            verifyScore: verifyScore,
             recallScore: recallScore,
             trialLength: this.state.remainingTrialLengths[0]
             };
@@ -42,17 +45,15 @@ class Experiment extends Component {
     }
     
     get_N_randomizedItems(numberOfItems) {
-        return 
-            Utils.shuffle(Constants.POSSIBLEITEMS).slice(0, numberOfItems)
+        return Utils.shuffle(Constants.POSSIBLEITEMS).slice(0, numberOfItems)
     }
     
     render() {
         return (
             <div className="experiment">
-                //experiment instructions goes here
                 <Trial 
-                  verifications={this.state.remainingVerifications.slice(0, this.state.remainingTrialLengths[0]}
-                  verificationAnswers={this.state.remainingAnswers.slice(0, this.state.remainingTrialLengths[0]}
+                  verifications={this.state.remainingVerifications.slice(0, this.state.remainingTrialLengths[0])}
+                  verificationAnswers={this.state.remainingAnswers.slice(0, this.state.remainingTrialLengths[0])}
                   memoryItems={this.get_N_randomizedItems(this.state.remainingTrialLengths[0])}
                   onDone={this.recordResultsAndAdvance}
                 />

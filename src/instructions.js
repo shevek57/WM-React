@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Introduction(props) {
+export function Introduction(props) {
     const userID = React.createRef();
     return (
         <div id="init">
@@ -37,4 +37,23 @@ function Introduction(props) {
     )
 }
 
-    export default Introduction;
+export function ExperimentInstructions(props) {
+
+}
+
+export function CompletionInstructions(prop) {
+
+}
+
+export function Feedback (props) {
+    return (
+        <div className="trialFeedback">
+            <p>You responded to {props.verificationScore} statements correctly out of {props.numberOfVerifications}</p>
+            <p>You recalled {props.recallScore} items correctly out of {props.numberOfItems}</p>
+            <br />
+            <p><button onClick={props.onDone}>Next trial</button></p>
+        </div>
+    )
+}
+
+ 
