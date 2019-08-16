@@ -7,7 +7,7 @@ const Constants = {
     RIGHTBUTTON_VALUE: 0,
     TIMEOUT_VALUE: 999,
     RECALLBUTTON_ROW_LENGTH: 3,
-    POSSIBLEITEMS: ['F', 'H', 'J', 'K', 'L', 'N', 'P', 'Q', 'R', 'S', 'T', 'Y']
+    POSSIBLE_ITEMS: ['F', 'H', 'J', 'K', 'L', 'N', 'P', 'Q', 'R', 'S', 'T', 'Y']
 };
 
 export default Constants;

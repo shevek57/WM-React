@@ -38,11 +38,18 @@ export function Introduction(props) {
 }
 
 export function ExperimentInstructions(props) {
+    return (<div>				<h1>Experiment Session</h1>
+        <ul>
+            <li>Complete these trials in the same way you completed Practice Session 3. </li>
+            <li>In this session, the number of statements and letters in a trial will vary between 4 and 9. There are 13 trials in total.</li>
+            <li>Remember to work as quickly, but as accurately, as you can.</li>
+        </ul>
 
+        <p><button onClick={props.onDone}>Start Experiment</button></p></div>)
 }
 
 export function CompletionInstructions(prop) {
-
+    return (<div>Completion Instructions</div>)
 }
 
 export function Feedback (props) {

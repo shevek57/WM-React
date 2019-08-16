@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Stimuli from './Stimuli.js';
 import RecallTask from './RecallTask.js';
-import Feedback from './Feedback.js';
+import {Feedback} from './instructions.js';
 import Constants from './Constants.js';
 
 
@@ -26,7 +26,7 @@ class Trial extends Component {
 
         if (answers.length !== this.props.verificationAnswers.length) return;
 
-        const score = this.props.verificationAnswers.reduce((total, answer, index) => total + (answer === answer[index] ? 1 : 0));
+        const score = this.props.verificationAnswers.reduce((total, answer, index) => total + (answer === answer[index] ? 1 : 0), 0);
 
         this.setState(currState => {
             return {
@@ -39,7 +39,7 @@ class Trial extends Component {
     scoreRecall(recalledItems) {
         if (recalledItems.length !== this.props.memoryItems.length) return; // should never happen because RecallTask checks this
 
-        const score = this.props.memoryItems.reduce((total, item, index) => total + (item === recalledItems[index] ? 1 : 0));
+        const score = this.props.memoryItems.reduce((total, item, index) => total + (item === recalledItems[index] ? 1 : 0), 0);
 
         this.setState(currState => {
             return {
@@ -60,16 +60,24 @@ class Trial extends Component {
                             onDone={this.scoreVerifications}
                         />,
                         <RecallTask 
-                            possibleItems={Constants.POSSIBLEITEMS}
+                            possibleItems={Constants.POSSIBLE_ITEMS}
                             numberToRecall={this.props.memoryItems.length}
                             onDone={this.scoreRecall}
                         />,
                         <Feedback
                             verificationScore={this.state.verificationScore}
                             numberOfVerifications={this.props.verifications.length}
-                            recallScore={this.recallScore}
+                            recallScore={this.state.recallScore}
                             numberOfItems={this.props.memoryItems.length}
-                            onDone={() => { this.onDone(this.state.verificationScore, this.state.recallScore) }} />
+                            onDone={() => {
+                                this.props.onDone(this.state.verificationScore, this.state.recallScore);
+                                this.setState(currState => {
+                                    return {
+                                        activeFrame: currState.activeFrame + 1
+                                    }
+                                })
+                            }}
+                        />
                     ];
                     return children[this.state.activeFrame % children.length]
                 })()}
