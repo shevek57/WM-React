@@ -26,7 +26,9 @@ class VerificationTask extends Component {
     render() {
         return (
             <div>
-                <span>{this.props.question}</span>
+                <p>Read this statement out loud before responding:</p>
+                <p></p>
+                <span>{this.props.question}</span><p></p>
                 <div>
                     <button onClick={this.handleClick} value={Constants.LEFTBUTTON_VALUE}>{Constants.LEFTBUTTON_TITLE}</button>
                     <button onClick={this.handleClick} value={Constants.RIGHTBUTTON_VALUE}>{Constants.RIGHTBUTTON_TITLE}</button>

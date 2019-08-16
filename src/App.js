@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import Constants from './Constants.js';
 import {Introduction, ExperimentInstructions, CompletionInstructions} from './instructions.js';
 import Experiment from './Experiment.js';
+import {DataStore} from './DataStore.js';
 
 
 class App extends Component {
@@ -14,12 +14,15 @@ class App extends Component {
       activeFrame: 0
     }
 
-    this.handleDone = this.handleDone.bind(this);
+    this.verificationsForExperiment = DataStore.verificationsForExperiment;
+    this.answersForExperiment = DataStore.answersForExperiment;
+    this.trialLengthsForExperiment = DataStore.trialLengthsForExperiment;
+
+    this.advanceFrame = this.advanceFrame.bind(this);
   }
 
-  handleDone(answers) {
+  advanceFrame() {
        this.setState(currState => {return {activeFrame: currState.activeFrame + 1}});
-       alert(answers.toString());
   }
 
   render() {
@@ -30,20 +33,20 @@ class App extends Component {
             <Introduction onDone={this.advanceFrame} />,
             <ExperimentInstructions
               onDone={(userID) => {
-                this.recordID(userID);
+                DataStore.recordID(userID);
                 this.advanceFrame()
               }}
             />,
             <Experiment
-              allVerifications={this.verificationsForExperiment}
-              allAnswers={this.answersForExperiment}
-              trialLengths={this.trialLengthsForExperiment}
+              allVerifications={DataStore.verificationsForExperiment}
+              allAnswers={DataStore.answersForExperiment}
+              trialLengths={DataStore.trialLengthsForExperiment}
               onDone={(scoreResults) => {
-                this.recordResults(scoreResults);
+                DataStore.recordResults(scoreResults);
                 this.advanceFrame()
               }}
               />,
-              <CompletionInstructions onDone={this.allDone} />
+              <CompletionInstructions />
         ];
           return children[this.state.activeFrame % children.length]})()}
       </div>

@@ -71,6 +71,7 @@ class RecallTask extends Component {
     render() {
         return (
             <div>
+                <p>Click the letters in the order presented. Click "blank" to fill in forgotten letters.</p><br />
                 {this.createInputField()}
                 <span>Items Recalled: {this.state.recalledItems.join(' ')}</span>
                 <p /><p />
