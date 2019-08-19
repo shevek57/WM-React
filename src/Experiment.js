@@ -31,7 +31,7 @@ class Experiment extends Component {
             trialLength: this.state.remainingTrialLengths[0]
             };
         if (this.state.remainingTrialLengths.length === 1) { // end if there will be no more Trials
-            this.onDone([...this.state.scoreResults, scoreResult])
+            this.props.onDone([...this.state.scoreResults, scoreResult])
         } else {
         this.setState(currState => { // if more Trials needed, slice off the last used verifications, answers, and trial length
             const lastTrialLength = currState.remainingTrialLengths[0];
