@@ -1,51 +1,59 @@
 import React from 'react';
-
 export function Introduction(props) {
     const userID = React.createRef();
     return (
         <div id="init">
             <h1>Memory Study</h1>
 
-            <p className="instrp"> In this study, you will be asked to judge the correctness of simple mathematical statements (e.g., "(6 / 2) + 1 = 4")
+            <div className="instrp"> In this study, you will be asked to judge the correctness of simple mathematical statements (e.g., "(6 / 2) + 1 = 4")
             while remembering a series of letters.  Throughout the study you will receive feedback on your performance, such as the number of correctly
-                verified statements and the number of letters correctly recalled.</p>
+                verified statements and the number of letters correctly recalled.</div>
 
 
-            <p className="instrp">There will be three practice sessions followed by the experiment session:</p>
+            <div className="instrp">There will be three practice sessions followed by the experiment session:</div>
             <ul><li>Practice 1: Letter recall practice</li>
                 <li>Practice 2: Statement judgments practice</li>
                 <li>Practice 3: Combined statement judgments and letter recall practice</li>
                 <li>Experiment: Combined statement judgments and letter recall</li></ul>
 
 
-            <p className="instrp"><u>IMPORTANT</u></p>
+            <div className="instrp"><u>IMPORTANT</u></div>
             <ul>
                 <li>Please make sure your browser window is maximized so that you can see all instructions and materials.</li>
                 <li>Do not use the Back button throughout the study</li>
                 <li>Please do not switch to other browser windows or tabs during the study</li>
             </ul>
 
-            <p className="instrp">If you have any questions, please e-mail Irvin Katz at: <a href="mailto:ikatz@ets.org">ikatz@ets.org</a>. </p>
+            <div className="instrp">If you have any questions, please e-mail Irvin Katz at: <a href="mailto:ikatz@ets.org">ikatz@ets.org</a>. </div>
 
 
-            <p className="instrp">Please enter your assigned ID and click the "Start" button. Be sure to double-check your ID before you click "Start".  </p>
+            <div className="instrp">Please enter your assigned ID and click the "Start" button. Be sure to double-check your ID before you click "Start".  </div>
 
-            <p className="instrp">ID: <input type="text" defaultValue="" id="userid" size="20" ref={userID} /></p>
-            <p className="instrp"><input type="button" value="Click to Start" onClick={() => props.onDone(userID.current.value)}/> </p>
+            <div className="instrp">ID: <input type="text" defaultValue="" id="userid" size="20" ref={userID} /></div>
+            <div className="instrp">
+                <input style={styles.viewContainer} type="button" value="Click to Start" onClick={() => props.onDone(userID.current.value)}/> 
+            </div>
         </div>
 
     )
 }
 
 export function ExperimentInstructions(props) {
-    return (<div>				<h1>Experiment Session</h1>
+    return (
+    <div className="col-sp_ev-center">				
+        <h1>Experiment Session</h1>
         <ul>
             <li>Complete these trials in the same way you completed Practice Session 3. </li>
             <li>In this session, the number of statements and letters in a trial will vary between 4 and 9. There are 13 trials in total.</li>
             <li>Remember to work as quickly, but as accurately, as you can.</li>
         </ul>
 
-        <p><button onClick={props.onDone}>Start Experiment</button></p></div>)
+        <div>
+            <input style={styles.viewContainer} type="button" value="Start Experiment" 
+            onClick={props.onDone} />
+        </div>
+    </div>
+        )
 }
 
 export function CompletionInstructions(prop) {
@@ -55,12 +63,34 @@ export function CompletionInstructions(prop) {
 export function Feedback (props) {
     return (
         <div className="trialFeedback">
-            <p>You responded to {props.verificationScore} statements correctly out of {props.numberOfVerifications}</p>
-            <p>You recalled {props.recallScore} items correctly out of {props.numberOfItems}</p>
+            <div>You responded to {props.verificationScore} statements correctly out of {props.numberOfVerifications}</div>
+            <div>You recalled {props.recallScore} items correctly out of {props.numberOfItems}</div>
             <br />
-            <p><button onClick={props.onDone}>Next trial</button></p>
+            <div>
+                <input 
+                onClick={props.onDone}
+                value="Next Trial"
+                type="button"
+                />
+            </div>
         </div>
     )
 }
+
+const styles={
+    viewContainer:{
+      borderWidth:2,
+      borderStyle:"solid",
+      backgroundColor:"#F8F8F8",
+      borderColor:"#42A5F5",
+      color:"#000",
+      paddingLeft:5,
+      paddingRight:5,
+      width:"150px",
+      height:"30px",
+      borderRadius:'25%',
+      cursor:"pointer"
+    }
+  }
 
  
