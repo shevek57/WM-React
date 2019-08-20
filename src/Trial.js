@@ -3,6 +3,7 @@ import Stimuli from './Stimuli.js';
 import RecallTask from './RecallTask.js';
 import {Feedback} from './instructions.js';
 import Constants from './Constants.js';
+import FrameSequencer from './FrameSequencer.js';
 
 
 class Trial extends Component {
@@ -11,7 +12,7 @@ class Trial extends Component {
         super(props);
 
         this.state = {
-            activeFrame: 0,
+            // activeFrame: 0,
             verificationScore: 0,
             recallScore: 0
         }
@@ -22,7 +23,7 @@ class Trial extends Component {
     }
 
 
-    scoreVerifications(answers) {
+    scoreVerifications(answers) { 
 
         if (answers.length !== this.props.verificationAnswers.length) return;
 
@@ -31,7 +32,7 @@ class Trial extends Component {
         this.setState(currState => {
             return {
                 verificationScore: score,
-                activeFrame: currState.activeFrame + 1
+                // activeFrame: currState.activeFrame + 1
             }
         })
     }
@@ -44,46 +45,70 @@ class Trial extends Component {
         this.setState(currState => {
             return {
                 recallScore: score,
-                activeFrame: currState.activeFrame + 1
+                // activeFrame: currState.activeFrame + 1
             }
         })
     }
 
     render() {
         return (
-            <div className="Trial">
-                {(() => {
-                    const children = [
-                        <Stimuli
-                            verifications={this.props.verifications}
-                            memoryItems={this.props.memoryItems}
-                            onDone={this.scoreVerifications}
-                        />,
-                        <RecallTask 
-                            possibleItems={Constants.POSSIBLE_ITEMS}
-                            numberToRecall={this.props.memoryItems.length}
-                            onDone={this.scoreRecall}
-                        />,
-                        <Feedback
-                            verificationScore={this.state.verificationScore}
-                            numberOfVerifications={this.props.verifications.length}
-                            recallScore={this.state.recallScore}
-                            numberOfItems={this.props.memoryItems.length}
-                            onDone={() => {
-                                this.props.onDone(this.state.verificationScore, this.state.recallScore);
-                                this.setState(currState => {
-                                    return {
-                                        activeFrame: currState.activeFrame + 1
-                                    }
-                                })
-                            }}
-                        />
-                    ];
-                    return children[this.state.activeFrame % children.length]
-                })()}
-            </div>
+            <FrameSequencer>
+                <Stimuli
+                    verifications={this.props.verifications}
+                    memoryItems={this.props.memoryItems}
+                    onDone={this.scoreVerifications}
+                />
+                <RecallTask
+                    possibleItems={Constants.POSSIBLE_ITEMS}
+                    numberToRecall={this.props.memoryItems.length}
+                    onDone={this.scoreRecall}
+                />
+                <Feedback
+                    verificationScore={this.state.verificationScore}
+                    numberOfVerifications={this.props.verifications.length}
+                    recallScore={this.state.recallScore}
+                    numberOfItems={this.props.memoryItems.length}
+                    onDone={() => { this.props.onDone(this.state.verificationScore, this.state.recallScore) }}
+                />
+            </FrameSequencer>
         )
     }
+
+    // render() {
+    //     return (
+    //         <div className="Trial">
+    //             {(() => {
+    //                 const children = [
+    //                     <Stimuli
+    //                         verifications={this.props.verifications}
+    //                         memoryItems={this.props.memoryItems}
+    //                         onDone={this.scoreVerifications}
+    //                     />,
+    //                     <RecallTask 
+    //                         possibleItems={Constants.POSSIBLE_ITEMS}
+    //                         numberToRecall={this.props.memoryItems.length}
+    //                         onDone={this.scoreRecall}
+    //                     />,
+    //                     <Feedback
+    //                         verificationScore={this.state.verificationScore}
+    //                         numberOfVerifications={this.props.verifications.length}
+    //                         recallScore={this.state.recallScore}
+    //                         numberOfItems={this.props.memoryItems.length}
+    //                         onDone={() => {
+    //                             this.props.onDone(this.state.verificationScore, this.state.recallScore);
+    //                             this.setState(currState => {
+    //                                 return {
+    //                                     activeFrame: currState.activeFrame + 1
+    //                                 }
+    //                             })
+    //                         }}
+    //                     />
+    //                 ];
+    //                 return children[this.state.activeFrame % children.length]
+    //             })()}
+    //         </div>
+    //     )
+    // }
 }
 
 export default Trial;

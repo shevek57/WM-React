@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Constants from './Constants.js';
 
 class VerificationTask extends Component {
-    // props: question, onResponse(answer)
+    // props: question, onDone(answer)
 
     constructor(props) {
         super(props);
@@ -11,7 +11,7 @@ class VerificationTask extends Component {
     }
 
     componentDidMount() {
-        this.timer = setTimeout((() => this.props.onResponse(Constants.TIMEOUT_VALUE)), Constants.VERIFICATION_MILLIS);
+        this.timer = setTimeout((() => this.props.onDone(Constants.TIMEOUT_VALUE)), Constants.VERIFICATION_MILLIS);
     }
 
     componentWillUnmount() {
@@ -20,7 +20,7 @@ class VerificationTask extends Component {
 
     handleClick = (event) => {
         // call onResponse with the parameter that's the value of the thing clicked
-        this.props.onResponse(event.target.value);
+        this.props.onDone(event.target.value);
     }
 
     render() {

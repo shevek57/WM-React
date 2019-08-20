@@ -37,7 +37,7 @@ class Stimuli_MemoryPractice extends Component {
             <div className='Stimuli'>
                 <MemoryTask
                             memoryItem={this.state.memoryItems[0]}
-                            onTimeout={this.handleMemoryTaskTimeout}
+                            onDone={this.handleMemoryTaskTimeout}
                         />
             </div>
         )

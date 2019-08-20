@@ -1,5 +1,25 @@
-.App {
-  text-align: center;
+body {
+  background: black;
+  color: white;
+  font-family: Arial,sans-serif;
+  font-weight: bold;
+  width:900px;
+}
+
+h1 {
+	border-bottom:1px solid white;
+	margin-bottom: 20px;
+}
+
+p {
+	text-align: left;
+}
+
+button 	{
+  font-size:1em;
+  cursor:pointer;
+  font-weight: bold;
+  padding: .2em;
 }
 
 .App-logo {

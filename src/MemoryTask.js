@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import Constants from './Constants.js';
 
 class MemoryTask extends Component {
-    // props: memoryItem and onTimeout
+    // props: memoryItem and onDone
 
     componentDidMount() {
-        this.timer = setTimeout(this.props.onTimeout, Constants.MEMORYTASK_MILLIS);
+        this.timer = setTimeout(this.props.onDone, Constants.MEMORYTASK_MILLIS);
     }
 
     componentWillUnmount() {
