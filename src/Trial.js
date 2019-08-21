@@ -12,7 +12,6 @@ class Trial extends Component {
         super(props);
 
         this.state = {
-            // activeFrame: 0,
             verificationScore: 0,
             recallScore: 0
         }
@@ -23,18 +22,13 @@ class Trial extends Component {
     }
 
 
-    scoreVerifications(answers) { 
+    scoreVerifications(answers) {
 
         if (answers.length !== this.props.verificationAnswers.length) return;
 
-        const score = this.props.verificationAnswers.reduce((total, answer, index) => total + (answer === answer[index] ? 1 : 0), 0);
+        const score = this.props.verificationAnswers.reduce((total, answer, index) => total + (answer === answers[index] ? 1 : 0), 0);
 
-        this.setState(currState => {
-            return {
-                verificationScore: score,
-                // activeFrame: currState.activeFrame + 1
-            }
-        })
+        this.setState({ verificationScore: score });
     }
 
     scoreRecall(recalledItems) {
@@ -42,12 +36,7 @@ class Trial extends Component {
 
         const score = this.props.memoryItems.reduce((total, item, index) => total + (item === recalledItems[index] ? 1 : 0), 0);
 
-        this.setState(currState => {
-            return {
-                recallScore: score,
-                // activeFrame: currState.activeFrame + 1
-            }
-        })
+        this.setState({ recallScore: score });
     }
 
     render() {

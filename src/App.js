@@ -6,7 +6,7 @@ import {DataStore} from './DataStore.js';
 import FrameSequencer from './FrameSequencer.js';
 
 
-function App(props) {
+function App() {
 
   return (
     <FrameSequencer>

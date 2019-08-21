@@ -18,10 +18,10 @@ class FrameSequencer extends Component {
         if (functionToCheck && {}.toString.call(functionToCheck) === '[object Function]') { // from https://stackoverflow.com/questions/5999998/check-if-a-variable-is-of-function-type
               newFunction = (...args) => {
                  functionToCheck(...args);
-                 this.advanceFrame();
+                 this.advanceFrame()
              }
         } else {
-            newFunction = () => this.advanceFrame();
+            newFunction = () => this.advanceFrame()
         }
 
         return React.cloneElement(child, {onDone: (...args) => newFunction(...args)})
@@ -29,15 +29,14 @@ class FrameSequencer extends Component {
     }
 
     advanceFrame() {
-        if (!this.props.children.length) return;
-        this.setState(currState => { return { activeFrame: (currState.activeFrame + 1)  }});
+        this.setState(currState => { return { activeFrame: (currState.activeFrame + 1)  }})
     }
 
     render() {
         const childrenArray = React.Children.toArray(this.props.children);
         if (!childrenArray.length) return;
         const childToRender = this.state.activeFrame % childrenArray.length;
-        return this.wrapChild(this.props.children[childToRender]);
+        return this.wrapChild(this.props.children[childToRender])
     }
 
 }
