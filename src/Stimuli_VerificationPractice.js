@@ -36,7 +36,7 @@ class Stimuli_VerificationPractice extends Component {
             <div className='Stimuli'>
                         <VerificationTask
                             question={this.state.verifications[0]}
-                            onResponse={this.handleVerificationResponse}
+                            onDone={this.handleVerificationResponse}
                         />
             </div>
         )

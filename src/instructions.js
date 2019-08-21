@@ -31,7 +31,7 @@ export function Introduction(props) {
             <p className="instrp">Please enter your assigned ID and click the "Start" button. Be sure to double-check your ID before you click "Start".  </p>
 
             <p className="instrp">ID: <input type="text" defaultValue="" id="userid" size="20" ref={userID} /></p>
-            <p className="instrp"><input type="button" value="Click to Start" onClick={() => props.onDone(userID.current.value)}/> </p>
+            <p className="instrp"><button onClick={() => props.onDone(userID.current.value)}>Click to Start</button> </p>
         </div>
 
     )

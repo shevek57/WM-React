@@ -21,9 +21,7 @@ class RecallTask extends Component {
     }
 
 
-    handleRecall(e) {
-        const item = e.target.value; //setState is asynchronous. because the event (e) is a temporary object, it might not be
-                                    //around by the time that the function in setState gets called.  Thus, need to pull the value now.
+    handleRecall(item) {
         if (this.state.recalledItems.length === this.props.numberToRecall) {
             alert('Must recall exactly ' + this.props.numberToRecall + ' items.');
         } else {
@@ -56,13 +54,13 @@ class RecallTask extends Component {
             {itemChunks.map((chunk, index) => // keys added to avoid warning from React
                 <div key={index}>
                     {chunk.map((item, index) => // keys added to avoid warning from React
-                        <button key={index} value={item} onClick={this.handleRecall}>{item}</button>
+                        <button style={{width: '3em'}} key={index} onClick={() => this.handleRecall(item)}>{item}</button>
                     )}
                 </div>
             )}
             <div>
-                <button value="_"  onClick={this.handleRecall}>BLANK</button>
-                <button onClick={this.handleDelete}>DELETE</button>
+                <button style={{width: '4.5em'}} onClick={() => this.handleRecall('_')}>BLANK</button>
+                <button style={{width: '4.5em'}} onClick={this.handleDelete}>DELETE</button>
             </div>
         </div>
         )
@@ -75,7 +73,7 @@ class RecallTask extends Component {
                 {this.createInputField()}
                 <span>Items Recalled: {this.state.recalledItems.join(' ')}</span>
                 <p /><p />
-                <button onClick={this.handleSubmit}>FINISHED</button>
+                <button style={{width: '9em'}} onClick={this.handleSubmit}>FINISHED</button>
             </div>
         )
     }

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import MemoryTask from './MemoryTask.js';
 import VerificationTask from './VerificationTask.js';
+import FrameSequencer from './FrameSequencer.js';
 
 
 
@@ -9,7 +10,7 @@ class Stimuli extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            activeFrame: 0,
+ //           activeFrame: 0,
             verifications: [...this.props.verifications],
             verificationAnswers: [],
             memoryItems: [...this.props.memoryItems]
@@ -26,7 +27,7 @@ class Stimuli extends Component {
             return {
                 verifications: currState.verifications.slice(1),
                 verificationAnswers: [...currState.verificationAnswers, answer],
-                activeFrame: currState.activeFrame + 1
+   //             activeFrame: currState.activeFrame + 1
             }
         })
     }
@@ -39,12 +40,12 @@ class Stimuli extends Component {
             if (currState.verifications.length === 0) {
                 props.onDone(currState.verificationAnswers); // send the answers we accumulated to the parent via callback
                 return { 
-                    activeFrame: currState.activeFrame + 1
+                    // activeFrame: currState.activeFrame + 1
                 }
             } else { // Otherwise, we just showed a Memory item for a few seconds so now we need to hide it and show the next verification
                 return {
                     memoryItems: currState.memoryItems.slice(1),
-                    activeFrame: currState.activeFrame + 1
+                    // activeFrame: currState.activeFrame + 1
                 }
             }
         })
@@ -53,23 +54,40 @@ class Stimuli extends Component {
  
     render() {
         return (
-            <div className='Stimuli'>
-                {(() => {
-                    const children = [
-                        <VerificationTask
-                            question={this.state.verifications[0]}
-                            onResponse={this.handleVerificationResponse}
-                        />,
-                        <MemoryTask
-                            memoryItem={this.state.memoryItems[0]}
-                            onTimeout={this.handleMemoryTaskTimeout}
-                        />
-                    ];
-                    return children[this.state.activeFrame % children.length]
-                })()}
-            </div>
+            <FrameSequencer>
+                <VerificationTask
+                    question={this.state.verifications[0]}
+                    onDone={this.handleVerificationResponse}
+                />
+                <MemoryTask
+                    memoryItem={this.state.memoryItems[0]}
+                    onDone={this.handleMemoryTaskTimeout}
+                />
+            </FrameSequencer>
         )
     }
+
+
+
+    // render() {
+    //     return (
+    //         <div className='Stimuli'>
+    //             {(() => {
+    //                 const children = [
+    //                     <VerificationTask
+    //                         question={this.state.verifications[0]}
+    //                         onResponse={this.handleVerificationResponse}
+    //                     />,
+    //                     <MemoryTask
+    //                         memoryItem={this.state.memoryItems[0]}
+    //                         onTimeout={this.handleMemoryTaskTimeout}
+    //                     />
+    //                 ];
+    //                 return children[this.state.activeFrame % children.length]
+    //             })()}
+    //         </div>
+    //     )
+    // }
 }
 
 export default Stimuli;
