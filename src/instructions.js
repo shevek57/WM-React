@@ -48,7 +48,7 @@ export function ExperimentInstructions(props) {
         <p><button onClick={props.onDone}>Start Experiment</button></p></div>)
 }
 
-export function CompletionInstructions(prop) {
+export function CompletionInstructions() {
     return (<div>Completion Instructions</div>)
 }
 

@@ -3,9 +3,6 @@ import Trial from './Trial.js';
 import Constants from './Constants.js';
 import Utils from './Utils.js';
 
-// TODO: Refactor onDone in all Components.  Make better names that are more descriptive 
-// of what parameters they expect.
-
 class Experiment extends Component {
 // props: allVerifications, allAnswers, trialLengths, onDone(scoreResults)
     constructor(props) {
