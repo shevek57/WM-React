@@ -7,7 +7,9 @@ const Constants = {
     RIGHTBUTTON_VALUE: '0',
     TIMEOUT_VALUE: 999,
     RECALLBUTTON_ROW_LENGTH: 3,
-    POSSIBLE_ITEMS: ['F', 'H', 'J', 'K', 'L', 'N', 'P', 'Q', 'R', 'S', 'T', 'Y']
+    POSSIBLE_ITEMS: ['F', 'H', 'J', 'K', 'L', 'N', 'P', 'Q', 'R', 'S', 'T', 'Y'],
+    DB_URL: 'http://localhost:3001/wm-result',
+    CHECK_TRIAL_LENGTH: 9
 };
 
 export default Constants;
