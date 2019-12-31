@@ -50,6 +50,18 @@ button 	{
   font-size: 3em;
 }
 
+.letterButton {
+  width: 3em;
+}
+
+.controlButton {
+  width: 4.5em;
+}
+
+.finishedButton {
+  width: 9em;
+}
+
 .bp{
 	margin-top:1em;
 	text-align: center;
