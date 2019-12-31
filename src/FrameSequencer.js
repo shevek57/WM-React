@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-//This component renders only one if its children at a time.
+//This component renders only one if its children at a time. It progresses to the next child (wrapping back to first) when
+//the active child calls the callback function in its "onDone" property.
 
 class FrameSequencer extends Component {
 
