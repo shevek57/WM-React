@@ -9,7 +9,7 @@ const MemoryTask = ({memoryItem, onDone}) => {
         const timer = setTimeout(onDone, Constants.MEMORYTASK_MILLIS);
         return () => clearTimeout(timer);
     }, []);
-    return <span>{memoryItem}</span>
+    return <p className="item">{memoryItem}</p>
 }
 
 MemoryTask.propTypes = {

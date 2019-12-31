@@ -1,18 +1,42 @@
+* {
+	margin:0;
+	padding:0;
+}
 body {
   background: black;
   color: white;
   font-family: Arial,sans-serif;
   font-weight: bold;
-  width:900px;
+  font-size:.625em;
+}
+
+.main {
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 150px;
+  text-align: center;
+}
+
+li {
+  text-align: left;
+  font-size:2em;
 }
 
 h1 {
-	border-bottom:1px solid white;
+  font-size:4em;
+  border-bottom:1px solid white;
 	margin-bottom: 20px;
 }
 
 p {
 	text-align: left;
+	font-size:3em;
+}
+
+.instrp {
+	text-align: left;
+	font-size:2em;
 }
 
 button 	{
@@ -20,6 +44,29 @@ button 	{
   cursor:pointer;
   font-weight: bold;
   padding: .2em;
+}
+
+.recallButton {
+  font-size: 3em;
+}
+
+.bp{
+	margin-top:1em;
+	text-align: center;
+}
+
+.sentence{
+	font-size:5em;
+	text-align: center;
+}
+
+.item{
+	text-align: center;
+	font-size:5em;
+}
+
+input[type=text]{ 
+	font-size:1em;
 }
 
 .App-logo {

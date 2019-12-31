@@ -1,7 +1,10 @@
 // Temporary approach to a data store -- both for the things that should be displayed as well as logging data.  
 import Utils from './Utils.js';
+import axios from 'axios';
+import Constants from './Constants.js';
 
-export const DataStore = {};
+
+const DataStore = {};
 
 function divideVerifyStrings (vString) {
     const sentences = [];
@@ -102,8 +105,18 @@ const stimuliForExperiment = "\
 
 [DataStore.answersForExperiment, DataStore.verificationsForExperiment] = divideVerifyStrings(stimuliForExperiment);
 
-DataStore.trialLengthsForExperiment = [4,5,7].concat(Utils.shuffle([6,4,7,6,4,6,7,5,9,5]));
+// DataStore.answersForExperiment = ['1','1'];
+// DataStore.verificationsForExperiment = ['(2 × 6) - 7 = 5', '(2 × 5) - 7 = 4' ];
+DataStore.trialLengthsForExperiment = [2, 9];
 
-DataStore.recordID = (id) => {};
+// DataStore.trialLengthsForExperiment = [4,5,7].concat(Utils.shuffle([6,4,7,6,4,6,7,5,9,5]));
 
-DataStore.recordResults = (results) => {};
+DataStore.recordID = (id) => {
+    DataStore.userID = id
+};
+
+DataStore.recordResults = (results) => {
+    axios.post(Constants.DB_URL, {userID: DataStore.userID, ...results})
+};
+
+export default DataStore;

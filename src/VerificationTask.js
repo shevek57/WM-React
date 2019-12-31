@@ -11,12 +11,11 @@ const VerificationTask = ({ question, onDone }) => {
     return (
         <div>
             <p>Read this statement out loud before responding:</p>
-            <p></p>
-            <span>{question}</span><p></p>
-            <div>
+            <p className="sentence">{question}</p><br /><br />
+            <p className="bp">
                 <button onClick={() => onDone(Constants.LEFTBUTTON_VALUE)}>{Constants.LEFTBUTTON_TITLE}</button>
                 <button onClick={() => onDone(Constants.RIGHTBUTTON_VALUE)}>{Constants.RIGHTBUTTON_TITLE}</button>
-            </div>
+            </p>
         </div>
     )
 }

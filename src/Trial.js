@@ -26,7 +26,10 @@ class Trial extends Component {
 
         if (answers.length !== this.props.verificationAnswers.length) return;
 
-        const score = this.props.verificationAnswers.reduce((total, answer, index) => total + (answer === answers[index] ? 1 : 0), 0);
+        const score = this.props.verificationAnswers.reduce(
+          (total, answer, index) => total + (answer === answers[index] ? 1 : 0),
+          0
+        );
 
         this.setState({ verificationScore: score });
     }
@@ -34,7 +37,11 @@ class Trial extends Component {
     scoreRecall(recalledItems) {
         if (recalledItems.length !== this.props.memoryItems.length) return; // should never happen because RecallTask checks this
 
-        const score = this.props.memoryItems.reduce((total, item, index) => total + (item === recalledItems[index] ? 1 : 0), 0);
+        const score = this.props.memoryItems.reduce(
+          (total, item, index) =>
+            total + (item === recalledItems[index] ? 1 : 0),
+          0
+        );
 
         this.setState({ recallScore: score });
     }
