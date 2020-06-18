@@ -54,13 +54,13 @@ class RecallTask extends Component {
             {itemChunks.map((chunk, index) => // keys added to avoid warning from React
                 <div key={index}>
                     {chunk.map((item, index) => // keys added to avoid warning from React
-                        <button className="recallButton" style={{width: '3em'}} key={index} onClick={() => this.handleRecall(item)}>{item}</button>
+                        <button className="recallButton letterButton" key={index} onClick={() => this.handleRecall(item)}>{item}</button>
                     )}
                 </div>
             )}
             <div>
-                <button className="recallButton" style={{width: '4.5em'}} onClick={() => this.handleRecall('_')}>BLANK</button>
-                <button className="recallButton" style={{width: '4.5em'}} onClick={this.handleDelete}>DELETE</button>
+                <button className="recallButton controlButton" onClick={() => this.handleRecall('_')}>BLANK</button>
+                <button className="recallButton controlButton" onClick={this.handleDelete}>DELETE</button>
             </div>
         </div>
         )
@@ -73,7 +73,7 @@ class RecallTask extends Component {
                 {this.createInputField()}
                 <p>Items Recalled: {this.state.recalledItems.join(' ')}</p>
                 <p /><p />
-                <button className="recallButton" style={{width: '9em'}} onClick={this.handleSubmit}>FINISHED</button>
+                <button className="recallButton finishedButton" onClick={this.handleSubmit}>FINISHED</button>
             </div>
         )
     }
